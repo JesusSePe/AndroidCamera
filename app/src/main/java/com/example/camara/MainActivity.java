@@ -30,6 +30,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        try {
+            ImageView imageView = findViewById(R.id.imageView);
+            imageView.setImageURI(Uri.fromFile(getFile()));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         Button trigger = findViewById(R.id.trigger);
         trigger.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        setContentView(R.layout.activity_main);
         final ImageView imageView = findViewById(R.id.imageView);
         try {
             Uri fileUri = Uri.fromFile(getFile());
